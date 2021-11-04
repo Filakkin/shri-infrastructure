@@ -1,5 +1,6 @@
 #!/bin/bash
 
+current_path=$(pwd)
 parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 cd "$parent_path"
 
@@ -19,6 +20,8 @@ DESCRIPTION="
 $CHANGELOG
 |#
 "
+
+cd "$current_path"
 
 jq -c \
 --arg key0 'queue' --arg value0 'TMP' \
