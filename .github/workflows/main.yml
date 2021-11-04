@@ -56,11 +56,14 @@ jobs:
       - name: Print commit messages between previous and current releases
         run: git log --format=%B --no-merges ${{ env.RELEASE_VERSION }}...${{ env.PREV_RELEASE }}
 
+      - name: Generate json payload for creating task request
+        run: ./scripts/genCreateTaskJson.sh '${{ env.RELEASE_NAME }}' ./payload.json
+
       - name: Create Yandex.Tracker release task
         env:
           TOKEN: ${{ secrets.test_token }}
           ORG_ID: ${{ secrets.org_id }}
-        run: ./scripts/createTask.sh '${{ env.RELEASE_NAME }}'
+        run: ./scripts/createTask.sh '${{ env.RELEASE_NAME }}' ./payload.json
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
