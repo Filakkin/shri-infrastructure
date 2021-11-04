@@ -28,7 +28,7 @@ jobs:
           fetch-depth: 0
 
       - name: Give rigths to run a script from repository
-        run: chmod +X -R ./scripts/
+        run: chmod +x -R ./scripts/
 
       - name: Pring all tags
         run: echo $(git tag --sort=-taggerdate --merged)
