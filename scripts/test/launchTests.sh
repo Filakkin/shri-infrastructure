@@ -1,4 +1,5 @@
 #!/bin/bash
+npm install
 npx jest --no-color 2>test-output.txt
 
 current_path=$(pwd)
