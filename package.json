@@ -1,0 +1,22 @@
+{
+  "name": "8-infrastructure",
+  "version": "1.49.0",
+  "description": "SHRI HW",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Filakkin/shri-infrastructure.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Filakkin/shri-infrastructure/issues"
+  },
+  "homepage": "https://github.com/Filakkin/shri-infrastructure#readme",
+  "dependencies": {
+    "jest": "^27.3.1"
+  }
+}

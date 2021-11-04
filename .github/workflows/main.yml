@@ -66,3 +66,18 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+  run_tests:
+    needs: create_release
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+    
+      - name: Launch tests
+        env:
+          TOKEN: ${{ secrets.test_token }}
+          ORG_ID: ${{ secrets.org_id }}
+        run: ./scripts/tests/launchTests.sh

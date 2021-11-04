@@ -4,8 +4,8 @@ current_path=$(pwd)
 parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 cd "$parent_path"
 
-APP_NAME=$(jq -r .id ../../config/main.json)
-RELEASE_TAG=$(../releaseTag.sh)
+APP_NAME=$(jq -r .id ../config/main.json)
+RELEASE_TAG=$(./releaseTag.sh)
 
 RESULT=$(curl \
 -X POST \
