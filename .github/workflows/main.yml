@@ -28,10 +28,13 @@ jobs:
         run: echo Hello, world!
 
       - name: Give rigths to run a script from repository
-        run: chmod +x /home/runner/work/shri-infrastructure/shri-infrastructure/scripts/hw.sh
+        run: chmod +x ./scripts/hw.sh
 
       - name: Run script inside repository
-        run: /home/runner/work/shri-infrastructure/shri-infrastructure/scripts/hw.sh
+        env:
+          TOKEN: ${{ secrets.test_token }}
+          ORG_ID: ${{ secrets.org_id }}
+        run: ./scripts/hw.sh
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
