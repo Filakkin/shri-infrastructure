@@ -8,6 +8,8 @@ PREV_VERSTION=$(../prevRelease.sh $RELEASE_VERSION)
 CHANGELOG=$(./getChanges.sh $RELEASE_VERSION $PREV_VERSION)
 TASK_ID=$(./searchTask.sh)
 
+echo "TASK_ID $TASK_ID"
+
 if [ -z "$TASK_ID" ]
 then 
     echo "CREATE"
