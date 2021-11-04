@@ -28,7 +28,7 @@ jobs:
         run: echo Hello, world!
 
       - name: Give rigths to run a script from repository
-        run: chmod +x /home/runner/work/shri-infrastructure/shri-infrastructure/scrtips/hw.sh
+        run: chmod +x /home/runner/work/shri-infrastructure/shri-infrastructure/scripts/hw.sh
 
       - name: Run script inside repository
         run: /home/runner/work/shri-infrastructure/shri-infrastructure/scripts/hw.sh
