@@ -6,7 +6,7 @@ name: Release
 on:
   # Triggers the workflow on ref creation (branch, tag)
   create:
-    if: ${{ startsWith(github.ref, 'refs/tags/') && contains(github.ref, 'refs/tags/v*)')}}
+    if: ${{ startsWith($GITHUB_REF, 'refs/tags/') && contains($GITHUB_REF, 'refs/tags/v*') }}
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
