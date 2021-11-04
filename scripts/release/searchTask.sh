@@ -7,6 +7,8 @@ cd "$parent_path"
 APP_NAME=$(jq -r .id ../../config/main.json)
 RELEASE_TAG=$(../releaseTag.sh)
 
+echo "SEARCHING FOR EXISTING"
+
 RESULT=$(curl \
 -X POST \
 -H "Authorization: OAuth $TOKEN" \

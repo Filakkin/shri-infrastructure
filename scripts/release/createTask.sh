@@ -5,6 +5,8 @@ JSON_PATH=./create-payload.json
 
 $parent_path/genCreateTaskJson.sh $JSON_PATH
 
+echo "Creating new task $(jq . $JSON_PATH)"
+
 curl \
 -X POST \
 -H "Authorization: OAuth $TOKEN" \

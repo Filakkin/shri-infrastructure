@@ -5,6 +5,8 @@ JSON_PATH=./update-payload.json
 
 $parent_path/genUpdateTaskJson.sh $JSON_PATH
 
+echo "UPDATING TASK $TASK_ID $(jq . $JSON_PATH)"
+
 curl \
 -X POST \
 -H "Authorization: OAuth $TOKEN" \
