@@ -67,6 +67,23 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
 
+  build_docker_image:
+    needs: create_release
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+    
+      - name: Build image
+        env:
+          TOKEN: ${{ secrets.test_token }}
+          ORG_ID: ${{ secrets.org_id }}
+        run: ./scripts/docker/buildDocker.sh
+
   run_tests:
     needs: create_release
 
@@ -75,6 +92,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
     
       - name: Launch tests
         env:
