@@ -14,7 +14,7 @@ CHANGELOG=$(./getChanges.sh $RELEASE_TAG $PREV_RELEASE)
 DESCRIPTION="
 **Версия**: $RELEASE_TAG
 **Создан**: $RELEASE_DATE
-**Список изменения**:
+**Список изменений**:
 #|
 || Изменение | Коммит | Автор ||
 $CHANGELOG
