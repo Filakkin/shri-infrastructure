@@ -33,18 +33,18 @@ jobs:
       - name: Get latest release tag
         run: |
           RELEASE_VERSION=$(./scripts/releaseTag.sh)
-          echo "::set-env name=RELEASE_VERSION::$RELEASE_VERSION" 
+          echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
 
       - name: Print release name
-        run: echo 'Создаем релиз $RELESE_VERSION'
+        run: echo 'Создаем релиз ${{ env.RELEASE_VERSION }}'
 
       - name: Get previous release tag
         run: |
-          PREV_RELEASE=$(git describe --match v*.* $RELEASE_VERSION^)
-          echo "::set-env name=PREV_RELEASE::$PREV_RELEASE"
+          PREV_RELEASE=$(git describe --match v*.* ${{ env.RELEASE_VERSION }}^)
+          echo "PREV_RELEASE=$PREV_RELEASE" >> $GITHUB_ENV
 
       - name: Pring commit messages between previous and current releases
-        run: git log --format=%B $RELEASE_VERSION...$PREV_RELEASE
+        run: git log --format=%B ${{ env.RELEASE_VERSION }}...${{ env.PREV_RELEASE }}
 
       - name: Run script inside repository
         env:
