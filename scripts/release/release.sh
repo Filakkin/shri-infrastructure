@@ -10,11 +10,11 @@ TASK_ID=$(./searchTask.sh)
 
 echo "TASK_ID $TASK_ID"
 
-if [ -z "$TASK_ID" ]
+if [ "$TASK_ID" == null ]
 then 
     echo "CREATE"
     ./createTask.sh
 else 
     echo "UPDATE"
-    ./updateTask.sh $TASK_ID $CHANGELOG
+    ./updateTask.sh $TASK_ID
 fi
