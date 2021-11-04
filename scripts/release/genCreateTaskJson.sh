@@ -8,7 +8,7 @@ APP_NAME=$(jq -r .id ../config/main.json)
 RELEASE_TAG=$(./releaseTag.sh)
 PREV_RELEASE=$(./prevRelease.sh $RELEASE_TAG)
 RELEASE_CODENAME=$(git for-each-ref --format="%(subject)" "refs/tags/$RELEASE_TAG")
-RELEASE_NAME="$(./genReleaseName.sh ../config/main.json $RELEASE_TAG) - \"$RELEASE_CODENAME\""
+RELEASE_NAME="$(./genReleaseName.sh ../config/main.json $RELEASE_TAG)"
 RELEASE_DATE=$(git for-each-ref --format="%(taggerdate:format:%d-%m-%Y %H:%M)" "refs/tags/$RELEASE_TAG")
 CHANGELOG=$(./getChanges.sh $RELEASE_TAG $PREV_RELEASE)
 DESCRIPTION="

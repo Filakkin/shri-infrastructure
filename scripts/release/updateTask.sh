@@ -1,14 +1,14 @@
 #!/bin/bash
 
-FALLBACK="{\"queue\":\"TMP\",\"summary\":\"$1\",\"assignee\":[\"259985626\"]}"
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+JSON_PATH=./update-payload.json
 
-echo "jq    ='$(jq . -c $2)'"
-echo "manuel='$FALLBACK'"
+$parent_path/genUpdateTaskJson.sh $JSON_PATH
 
 curl \
 -X POST \
 -H "Authorization: OAuth $TOKEN" \
 -H "X-Org-ID:$ORG_ID" \
 -H "Content-Type: application/json" \
--d @$2 \
+-d @$JSON_PATH \
 https://api.tracker.yandex.net/v2/issues/
