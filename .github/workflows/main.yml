@@ -29,7 +29,7 @@ jobs:
         run: chmod +x ./scripts/*
 
       - name: Fetching tags from repository
-        run: git fetch --all --tags
+        run: git fetch --tags -f
 
       - name: Get latest release tag
         run: |
