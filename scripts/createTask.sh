@@ -4,13 +4,13 @@ JSON_PAYLOAD=$(jq -c --arg key0 'queue' --arg value0 'TMP' --arg key1 'summary' 
 
 FALLBACK="{\"queue\":\"TMP\",\"summary\":\"$1\"}"
 
-echo "jq = $JSON_PAYLOAD"
+echo "jq    =$JSON_PAYLOAD"
 echo "manuel=$FALLBACK"
 
 curl \
 -H "Authorization: OAuth $TOKEN" \
 -H "X-Org-ID:$ORG_ID" \
 -H "Content-Type: application/json" \
--d "'$FALLBACK'" \
+-d "$FALLBACK" \
 -X POST \
 https://api.tracker.yandex.net/v2/issues/
