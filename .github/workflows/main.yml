@@ -39,6 +39,12 @@ jobs:
           echo "RELEASE_VERSION=$RELEASE_VERSION"
           echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
 
+      - name: Get release name
+        run: |
+          export RELEASE_NAME=$(./scripts/genReleaseName.sh ../config/main.json ${{ env.RELEASE_VERSION }})
+          echo "RELEASE_NAME=$RELEASE_NAME"
+          echo "RELEASE_NAME=$RELEASE_NAME" >> $GITHUB_ENV
+
       - name: Print release name
         run: |
           echo 'Создаем релиз ${{ env.RELEASE_VERSION }}'
@@ -49,14 +55,14 @@ jobs:
           echo "PREV_RELEASE=$PREV_RELEASE"
           echo "PREV_RELEASE=$PREV_RELEASE" >> $GITHUB_ENV
 
-      - name: Pring commit messages between previous and current releases
-        run: git log --format=%B ${{ env.RELEASE_VERSION }}...${{ env.PREV_RELEASE }}
+      - name: Print commit messages between previous and current releases
+        run: git log --format=%B --no-merges ${{ env.RELEASE_VERSION }}...${{ env.PREV_RELEASE }}
 
-      - name: Run script inside repository
+      - name: Create Yandex.Tracker release task
         env:
           TOKEN: ${{ secrets.test_token }}
           ORG_ID: ${{ secrets.org_id }}
-        run: ./scripts/hw.sh
+        run: ./scripts/createTask.sh ${{ env.RELEASE_NAME }}
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
