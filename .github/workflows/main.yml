@@ -30,18 +30,22 @@ jobs:
       - name: Give rigths to run a script from repository
         run: chmod +x ./scripts/*
 
+      - name: Fetching tags from repository
+        run: git fetch --all --tags
+
       - name: Get latest release tag
         run: |
-          RELEASE_VERSION=$(./scripts/releaseTag.sh)
+          export RELEASE_VERSION=$(./scripts/releaseTag.sh)
           echo "RELEASE_VERSION=$RELEASE_VERSION"
           echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
 
       - name: Print release name
-        run: echo 'Создаем релиз ${{ env.RELEASE_VERSION }}'
+        run: |
+          echo 'Создаем релиз ${{ env.RELEASE_VERSION }}'
 
       - name: Get previous release tag
         run: |
-          PREV_RELEASE=$(./prevRelease.sh ${{ env.RELEASE_VERSION }})
+          export PREV_RELEASE=$(./scripts/prevRelease.sh ${{ env.RELEASE_VERSION }})
           echo "PREV_RELEASE=$PREV_RELEASE"
           echo "PREV_RELEASE=$PREV_RELEASE" >> $GITHUB_ENV
 

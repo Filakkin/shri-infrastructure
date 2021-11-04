@@ -1,2 +1,2 @@
 #!/bin/bash
-git describe --match v*.* $1^
+echo $(git describe --abbrev=0 --match v*.* $1^)
