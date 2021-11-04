@@ -14,7 +14,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   create_release:
-   if: ${{ startsWith($GITHUB_REF, 'refs/tags/') && contains($GITHUB_REF, 'refs/tags/v*') }}
+    if: ${{ startsWith($GITHUB_REF, 'refs/tags/') && contains($GITHUB_REF, 'refs/tags/v*') }}
     # The type of runner that the job will run on
 
     runs-on: ubuntu-latest
