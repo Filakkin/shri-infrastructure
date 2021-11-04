@@ -38,6 +38,14 @@ jobs:
       - name: Print release name
         run: echo 'Создаем релиз $RELESE_VERSION'
 
+      - name: Get previous release tag
+        run: |
+          PREV_RELEASE=$(git describe --match v*.* $RELEASE_VERSION^)
+          echo "::set-env name=PREV_RELEASE::$PREV_RELEASE"
+
+      - name: Pring commit messages between previous and current releases
+        run: git log --format=%B $RELEASE_VERSION...$PREV_RELEASE
+
       - name: Run script inside repository
         env:
           TOKEN: ${{ secrets.test_token }}
