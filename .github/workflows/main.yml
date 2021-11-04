@@ -40,7 +40,7 @@ jobs:
 
       - name: Get previous release tag
         run: |
-          PREV_RELEASE=$(git describe --match v*.* ${{ env.RELEASE_VERSION }}^)
+          PREV_RELEASE=$(./prevRelease.sh ${{ env.RELEASE_VERSION }})
           echo "PREV_RELEASE=$PREV_RELEASE" >> $GITHUB_ENV
 
       - name: Pring commit messages between previous and current releases
