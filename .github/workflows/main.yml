@@ -43,7 +43,7 @@ jobs:
           echo "RELEASE_NAME=$RELEASE_NAME"
           echo "RELEASE_NAME=$RELEASE_NAME" >> $GITHUB_ENV
 
-      - name: Print release name
+      - name: Print release version
         run: |
           echo 'Создаем релиз ${{ env.RELEASE_VERSION }}'
 
