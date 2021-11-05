@@ -6,7 +6,7 @@ cd "$parent_path"
 
 APP_NAME=$(jq -r .id ../../config/main.json)
 #TODO вынести генерацию описания задачи в отдельный скрипт, так как эта часть дублирована в genUpdateTaskJson.sh
-DESCRIPTION=$(./genDescription.sh)
+DESCRIPTION="$(./genDescription.sh)"
 cd "$current_path"
 
 jq -c \

@@ -43,9 +43,11 @@ jobs:
 
       - name: Get release name
         run: |
-          export RELEASE_NAME=$(./scripts/release/genReleaseName.sh ./config/main.json ${{ env.RELEASE_VERSION }})
+          export RELEASE_CODENAME=$(git for-each-ref --format="%(subject)" "refs/tags/${{ env.RELEASE_VERSION }}")
+          export RELEASE_NAME="$(./scripts/release/genReleaseName.sh ./config/main.json ${{ env.RELEASE_VERSION }}) - \"$RELEASE_CODENAME\""
           echo "RELEASE_NAME=$RELEASE_NAME"
           echo "RELEASE_NAME=$RELEASE_NAME" >> $GITHUB_ENV
+          echo "RELEASE_CODENAME=$RELEASE_CODENAME" >> $GITHUB_ENV
 
       - name: Print release version
         run: |
