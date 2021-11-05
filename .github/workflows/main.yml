@@ -30,7 +30,7 @@ jobs:
       - name: Give rigths to run a script from repository
         run: chmod +x -R ./scripts/
 
-      - name: Pring all tags
+      - name: Print all tags
         run: echo $(git tag --sort=-taggerdate --merged)
 
       - name: Get latest release tag
