@@ -30,8 +30,10 @@ jobs:
       - name: Give rigths to run a script from repository
         run: chmod +x -R ./scripts/
 
-      - name: Print all tags
-        run: echo $(git tag --sort=-taggerdate --merged)
+      #Need this because the tag that triggers workflow applies on the branch as lightweight,
+      # see [https://github.com/actions/checkout/issues/290]
+      - name: Fetch all tags
+        run: git fetch --tags --force
 
       - name: Get latest release tag
         run: |
@@ -48,6 +50,7 @@ jobs:
       - name: Print release version
         run: |
           echo 'Создаем релиз ${{ env.RELEASE_VERSION }}'
+          echo $(git for-each-ref "refs/tags/${{ env.RELEASE_VERSION }}")
 
       - name: Get previous release tag
         run: |
