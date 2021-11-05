@@ -5,15 +5,15 @@ parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 cd "$parent_path"
 
 APP_NAME=$(jq -r .id ../../config/main.json)
-RELEASE_TAG=$(../releaseTag.sh)
-PREV_RELEASE=$(../prevRelease.sh $RELEASE_TAG)
+RELEASE_TAG=$RELEASE_VERSION
 RELEASE_CODENAME=$(git for-each-ref --format="%(subject)" "refs/tags/$RELEASE_TAG")
-RELEASE_NAME="$(./genReleaseName.sh ../../config/main.json $RELEASE_TAG)"
+echo "git for-each-ref --format=\"%(taggerdate:format:%d-%m-%Y %H:%M)\" \"refs/tags/$RELEASE_TAG\""
 RELEASE_DATE=$(git for-each-ref --format="%(taggerdate:format:%d-%m-%Y %H:%M)" "refs/tags/$RELEASE_TAG")
 CHANGELOG=$(./getChanges.sh $RELEASE_TAG $PREV_RELEASE)
 DESCRIPTION="
 **Версия**: $RELEASE_TAG
 **Создан**: $RELEASE_DATE
+**Codename**:
 **Список изменений**:
 #|
 || **Изменение** | **Коммит** | **Автор** ||
