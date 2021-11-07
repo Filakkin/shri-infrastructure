@@ -15,4 +15,5 @@ shell скрипты, используемые для CI расположены 
 Пустое приложение, собираемое в докер контейнер в папке `/app`
 
 -------------------------------------------------------------------
-My best commit in this repo;)
+1) My best commit in this repo;)
+2) My second best commit in this repo
